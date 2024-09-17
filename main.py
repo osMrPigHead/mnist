@@ -191,7 +191,7 @@ def _recognize(console: 'Console', model: 'Model') -> 'None':
         console.log("Images recognized")
     table = Table("Image Filepath", "Recognized as", title="RECOGNITION RESULTS",
                   expand=True, box=SIMPLE_HEAD)
-    for path, digit in zip(files, res):
+    for path, digit in sorted(zip(files, res)):
         table.add_row(str(path), str(digit))
     console.print(Panel(table))
 
