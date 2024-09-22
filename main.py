@@ -36,6 +36,7 @@ DEFAULT_FILENAME = "model.npz"
 HEIGHT = 28
 WIDTH = 28
 
+LAYERS = [16, 10]
 BATCH_SIZE = 10
 STEP = 1
 
@@ -48,7 +49,7 @@ def random_bw(sizes: "Sequence[int]") -> tuple[list[np.ndarray], list[np.ndarray
 class Model(Perceptron):
 
     def __init__(self, input_size: "int"):
-        sizes = [input_size, 16, 16, 10]
+        sizes = [input_size, *LAYERS]
         super().__init__(*random_bw(sizes))
 
     def activate(self, x: "TFloatLike") -> "TFloatLike":
@@ -182,9 +183,10 @@ def _recognize(console: 'Console', model: 'Model') -> 'None':
                               .resize((WIDTH, HEIGHT))
                               .convert("L"))]
             files += [path]
-        console.log("Images loaded")
         if not imgs:
+            console.log("[red]No image found")
             return
+        console.log("Images loaded")
         imgs = flatten_images(np.stack(imgs))
     with console.status("Model running..."):
         res = recognize(model, imgs)
