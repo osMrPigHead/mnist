@@ -177,10 +177,6 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python### JetBrains template
-# Ignore everything but code style settings and run configurations
-# that are supposed to be shared within teams.
-
+### JetBrains template
 .idea/*
 
-!.idea/codeStyles
-!.idea/runConfigurations
